@@ -1,0 +1,63 @@
+/* ============================================================
+   tokens.css — design system primitives (colors, type, space)
+   The single source of truth for theming. Components reference
+   only these variables, never raw values.
+   ============================================================ */
+
+:root {
+  /* Brand spectrum */
+  --violet: #8b5cf6;
+  --cyan:   #22d3ee;
+  --pink:   #f472b6;
+  --lime:   #a3e635;
+
+  --accent: var(--violet);
+  --accent-2: var(--cyan);
+  --accent-3: var(--pink);
+
+  --grad: linear-gradient(135deg, var(--violet) 0%, var(--cyan) 100%);
+  --grad-tri: linear-gradient(120deg, var(--violet), var(--cyan), var(--pink));
+  --grad-text: linear-gradient(90deg, var(--violet), var(--cyan), var(--pink), var(--violet));
+
+  /* Surfaces — dark first */
+  --bg: #05060c;
+  --bg-alt: #0a0b16;
+  --surface: rgba(20, 22, 38, 0.55);
+  --surface-solid: #11131f;
+  --surface-2: #181a2a;
+  --border: rgba(255, 255, 255, 0.08);
+  --border-strong: rgba(255, 255, 255, 0.16);
+
+  --text: #edeefb;
+  --text-dim: #a6a9c4;
+  --text-faint: #6a6e8c;
+
+  /* Type scale */
+  --font-display: 'Clash Display', 'Space Grotesk', sans-serif;
+  --font-body: 'Satoshi', 'Inter', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+
+  /* Shape & depth */
+  --radius: 20px;
+  --radius-sm: 13px;
+  --radius-lg: 28px;
+  --maxw: 1140px;
+  --shadow: 0 24px 70px -28px rgba(0, 0, 0, 0.85);
+  --shadow-glow: 0 0 50px -10px var(--accent);
+  --ease: cubic-bezier(.2, .8, .2, 1);
+  --ease-out: cubic-bezier(.16, 1, .3, 1);
+}
+
+[data-theme="light"] {
+  --bg: #f5f7fc;
+  --bg-alt: #e9eef7;
+  --surface: rgba(255, 255, 255, 0.6);
+  --surface-solid: #ffffff;
+  --surface-2: #eef2f9;
+  --border: rgba(15, 27, 45, 0.1);
+  --border-strong: rgba(15, 27, 45, 0.2);
+  --text: #0c1424;
+  --text-dim: #45506a;
+  --text-faint: #8088a0;
+  --shadow: 0 24px 60px -30px rgba(20, 30, 70, 0.35);
+}

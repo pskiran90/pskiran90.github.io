@@ -1,0 +1,51 @@
+/* ============================================================
+   base.css — reset, document defaults, layout primitives
+   ============================================================ */
+
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; scroll-padding-top: 84px; }
+
+body {
+  font-family: var(--font-body);
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.65;
+  font-weight: 500;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+  transition: background .6s var(--ease), color .6s var(--ease);
+}
+
+a { color: inherit; text-decoration: none; }
+strong { color: var(--text); font-weight: 700; }
+::selection { background: color-mix(in srgb, var(--accent) 40%, transparent); color: #fff; }
+
+.container { width: 100%; max-width: var(--maxw); margin: 0 auto; padding: 0 26px; }
+
+/* Display headings use Clash Display with a tightened tracking */
+h1, h2, h3, .font-display { font-family: var(--font-display); letter-spacing: -.02em; }
+
+/* Scrollbar polish (WebKit) */
+::-webkit-scrollbar { width: 11px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--surface-2); border-radius: 10px; border: 3px solid var(--bg); }
+::-webkit-scrollbar-thumb:hover { background: var(--accent); }
+
+/* Hide native cursor where the custom cursor is active */
+@media (pointer: fine) {
+  body.cursor-ready, body.cursor-ready * { cursor: none !important; }
+}
+
+/* Utility: gradient text */
+.grad-text {
+  background: var(--grad-text);
+  background-size: 300% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Glyphs flickered by the text-scramble effect */
+.scramble-glyph { color: var(--accent-2); opacity: .8; }
