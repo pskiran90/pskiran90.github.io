@@ -17,7 +17,7 @@ const A = {
   projects: () =>
     "Kiran has shipped 10+ products. Highlights:\n• STOGO.ai — AI exam generation & evaluation\n• APM Trader & Vide Trader — real-time forex trading\n• Spancom ERP — finance & inventory\n• Trrings — social platform\n• Native school-management apps\nAsk about any one, e.g. \"tell me about STOGO.ai\".",
   contact: () =>
-    "Easiest ways to reach Kiran:\n📧 pskiran91@gmail.com\n📞 +91 96458 24038\n🐙 github.com/kiranTakyon\nHe's open to senior Flutter roles, freelance & collaborations — email is fastest!",
+    "Easiest ways to reach Kiran:\n📧 pskiran91@gmail.com\n📞 +91 96458 24038\n💼 linkedin.com/in/kiran-p-s-4658aa249\n🐙 github.com/kiranTakyon\nHe's open to senior Flutter roles, freelance & collaborations — email is fastest!",
   hire: () =>
     "Yes — Kiran is currently open to work! 🎯 He's a fit for senior Flutter / mobile roles, freelance and product collaborations.\n📧 pskiran91@gmail.com — drop a line and he'll get back fast.",
   location: () =>
