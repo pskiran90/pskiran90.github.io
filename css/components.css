@@ -224,6 +224,54 @@ body.ready .hero__name .char { animation: charIn .7s var(--ease-out) forwards; a
   background: radial-gradient(circle at var(--gx,50%) var(--gy,50%), rgba(255,255,255,.55), transparent 45%); }
 .tilt:hover .glare { opacity: 1; }
 
+/* ===== AI assistant ===== */
+#ai { position: fixed; right: 22px; bottom: 22px; z-index: 300; font-family: var(--font-body); }
+
+.ai-fab { display: inline-flex; align-items: center; gap: 9px; padding: 13px 20px 13px 16px; border: none; border-radius: 999px; background: var(--grad); color: #fff; font-family: var(--font-body); font-weight: 700; font-size: .92rem; cursor: pointer; box-shadow: 0 16px 40px -10px var(--accent); position: relative; transition: transform .25s var(--ease), box-shadow .25s, opacity .25s; }
+.ai-fab:hover { box-shadow: 0 22px 54px -10px var(--accent); }
+.ai-fab.hidden { opacity: 0; pointer-events: none; transform: scale(.6) translateY(10px); }
+.ai-fab svg { position: relative; z-index: 1; }
+.ai-fab__label { position: relative; z-index: 1; }
+.ai-fab__pulse { position: absolute; inset: 0; border-radius: 999px; background: var(--accent); opacity: .55; z-index: 0; animation: aiPulse 2.4s ease-out infinite; }
+@keyframes aiPulse { 0% { transform: scale(1); opacity: .5; } 70%,100% { transform: scale(1.6); opacity: 0; } }
+
+.ai-panel { position: absolute; right: 0; bottom: 0; width: min(380px, calc(100vw - 32px)); height: min(560px, calc(100vh - 110px)); display: flex; flex-direction: column; background: color-mix(in srgb, var(--surface-solid) 78%, transparent); backdrop-filter: blur(22px); border: 1px solid var(--border-strong); border-radius: var(--radius-lg); box-shadow: var(--shadow); overflow: hidden; transform-origin: bottom right; opacity: 0; transform: translateY(16px) scale(.92); pointer-events: none; transition: opacity .32s var(--ease-out), transform .32s var(--ease-out); }
+.ai-panel.open { opacity: 1; transform: none; pointer-events: auto; }
+.ai-panel__head { display: flex; align-items: center; gap: 11px; padding: 15px 16px; border-bottom: 1px solid var(--border); background: color-mix(in srgb, var(--accent) 10%, transparent); }
+.ai-avatar { display: grid; place-items: center; width: 38px; height: 38px; border-radius: 50%; background: var(--grad); color: #fff; font-size: 1.1rem; box-shadow: 0 6px 18px -6px var(--accent); flex-shrink: 0; }
+.ai-panel__id { display: flex; flex-direction: column; line-height: 1.25; }
+.ai-panel__id strong { font-family: var(--font-display); font-size: 1rem; }
+.ai-status { font-size: .72rem; color: var(--text-faint); display: inline-flex; align-items: center; gap: 6px; }
+.ai-status__dot { width: 7px; height: 7px; border-radius: 50%; background: #22c55e; box-shadow: 0 0 0 0 rgba(34,197,94,.5); animation: pulse 2s infinite; }
+.ai-close { margin-left: auto; background: none; border: none; color: var(--text-faint); font-size: 1.5rem; line-height: 1; cursor: pointer; padding: 0 4px; transition: color .2s; }
+.ai-close:hover { color: var(--text); }
+
+.ai-log { flex: 1; overflow-y: auto; padding: 16px; display: flex; flex-direction: column; gap: 11px; scroll-behavior: smooth; }
+.ai-msg { max-width: 86%; padding: 11px 14px; border-radius: 15px; font-size: .9rem; line-height: 1.55; word-wrap: break-word; animation: aiIn .35s var(--ease-out); }
+@keyframes aiIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+.ai-msg--bot { align-self: flex-start; background: var(--surface-2); color: var(--text); border-bottom-left-radius: 5px; }
+.ai-msg--user { align-self: flex-end; background: var(--grad); color: #fff; border-bottom-right-radius: 5px; }
+.ai-typing { display: inline-flex; gap: 4px; align-items: center; }
+.ai-typing span { width: 7px; height: 7px; border-radius: 50%; background: var(--text-faint); animation: aiBlink 1.2s infinite; }
+.ai-typing span:nth-child(2) { animation-delay: .2s; }
+.ai-typing span:nth-child(3) { animation-delay: .4s; }
+@keyframes aiBlink { 0%,60%,100% { opacity: .25; transform: translateY(0); } 30% { opacity: 1; transform: translateY(-3px); } }
+
+.ai-suggest { display: flex; gap: 7px; padding: 0 16px 10px; flex-wrap: wrap; }
+.ai-chip { font-size: .76rem; padding: 6px 11px; border-radius: 999px; background: transparent; border: 1px solid var(--border-strong); color: var(--text-dim); font-family: var(--font-mono); cursor: pointer; transition: .2s; }
+.ai-chip:hover { color: var(--text); border-color: var(--accent); background: color-mix(in srgb, var(--accent) 12%, transparent); }
+
+.ai-input { display: flex; gap: 8px; padding: 12px 14px; border-top: 1px solid var(--border); }
+.ai-input input { flex: 1; background: var(--surface-2); border: 1px solid var(--border); border-radius: 999px; padding: 11px 16px; color: var(--text); font-family: var(--font-body); font-size: .9rem; outline: none; transition: border-color .2s; }
+.ai-input input:focus { border-color: var(--accent); }
+.ai-input button { display: grid; place-items: center; width: 42px; height: 42px; flex-shrink: 0; border: none; border-radius: 50%; background: var(--grad); color: #fff; cursor: pointer; transition: transform .2s; }
+.ai-input button:hover { transform: scale(1.08); }
+
+@media (max-width: 600px) {
+  #ai { right: 16px; bottom: 16px; }
+  .ai-panel { width: calc(100vw - 24px); height: min(70vh, 520px); }
+}
+
 /* ===== Responsive ===== */
 @media (max-width: 880px) {
   .hero__inner { grid-template-columns: 1fr; gap: 40px; text-align: center; }
@@ -272,4 +320,14 @@ body.ready .hero__name .char { animation: charIn .7s var(--ease-out) forwards; a
   .hero__name { font-size: 2.2rem; }
   .about__stats { grid-template-columns: 1fr; }
   .nav__inner { height: 60px; }
+}
+
+/* Perf: backdrop-filter is costly to composite. Drop it on phones and lean on
+   slightly more opaque surfaces instead — big paint win on low-end devices. */
+@media (max-width: 600px) {
+  .stat, .skill-group, .project, .contact-card, .float-chip, .hero__badge,
+  .marquee, .ai-panel { backdrop-filter: none; }
+  .stat, .skill-group, .project, .contact-card {
+    background: color-mix(in srgb, var(--surface-solid) 92%, transparent);
+  }
 }

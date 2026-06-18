@@ -12,6 +12,7 @@ import {
   initCursor, initMagnetic, initTilt, initSpotlight, initParallax, initTimelineDraw,
 } from './effects.js';
 import { initDraggable } from './drag.js';
+import { initAssistant } from './assistant.js';
 
 function boot() {
   // 1 — views
@@ -45,6 +46,7 @@ function boot() {
   // 5 — chrome
   initTheme();
   initNav();
+  initAssistant();
   document.getElementById('year').textContent = new Date().getFullYear();
 }
 

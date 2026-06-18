@@ -16,10 +16,16 @@ export function initNav() {
   const links = document.getElementById('navLinks');
   burger.addEventListener('click', () => { burger.classList.toggle('open'); links.classList.toggle('open'); });
   links.querySelectorAll('a').forEach(a => a.addEventListener('click', () => { burger.classList.remove('open'); links.classList.remove('open'); }));
-  addEventListener('scroll', () => {
-    nav.classList.toggle('scrolled', scrollY > 20);
+  const progress = document.getElementById('scrollProgress');
+  let ticking = false;
+  const onScroll = () => {
+    ticking = false;
     const h = document.documentElement;
-    document.getElementById('scrollProgress').style.width = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100 + '%';
+    nav.classList.toggle('scrolled', h.scrollTop > 20);
+    progress.style.width = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100 + '%';
+  };
+  addEventListener('scroll', () => {
+    if (!ticking) { ticking = true; requestAnimationFrame(onScroll); }
   }, { passive: true });
 }
 
