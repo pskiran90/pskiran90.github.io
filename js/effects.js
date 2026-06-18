@@ -19,6 +19,12 @@ export function initConstellation() {
   let w = 0, h = 0, nodes = [], shooters = [], frame = 0, nextShoot = 60;
   const mouse = { x: -999, y: -999 };
 
+  // Theme-aware palette: dark uses bright nodes on black; light uses deep indigo on white.
+  const isLight = () => document.documentElement.getAttribute('data-theme') === 'light';
+  const pal = () => isLight()
+    ? { node: '76,58,150', link: '92,70,190', linkMul: 2.1, cursor: '14,116,144', cursorMul: 1.3 }
+    : { node: '210,216,255', link: '139,148,255', linkMul: 1, cursor: '34,211,238', cursorMul: 1 };
+
   function resize() {
     w = canvas.clientWidth; h = canvas.clientHeight;
     canvas.width = w * dpr; canvas.height = h * dpr;
@@ -48,6 +54,7 @@ export function initConstellation() {
   function draw() {
     frame++;
     ctx.clearRect(0, 0, w, h);
+    const c = pal();
 
     // links between nearby nodes (+ to cursor)
     for (let i = 0; i < nodes.length; i++) {
@@ -61,8 +68,8 @@ export function initConstellation() {
         const dx = a.x - b.x, dy = a.y - b.y;
         const d2 = dx * dx + dy * dy;
         if (d2 < 17000) {
-          const o = (1 - d2 / 17000) * 0.18;
-          ctx.strokeStyle = `rgba(139,148,255,${o})`;
+          const o = (1 - d2 / 17000) * 0.18 * c.linkMul;
+          ctx.strokeStyle = `rgba(${c.link},${o})`;
           ctx.lineWidth = 1;
           ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y); ctx.stroke();
         }
@@ -71,15 +78,15 @@ export function initConstellation() {
       const mdx = a.x - mouse.x, mdy = a.y - mouse.y;
       const md2 = mdx * mdx + mdy * mdy;
       if (md2 < 30000) {
-        const o = (1 - md2 / 30000) * 0.4;
-        ctx.strokeStyle = `rgba(34,211,238,${o})`;
+        const o = (1 - md2 / 30000) * 0.4 * c.cursorMul;
+        ctx.strokeStyle = `rgba(${c.cursor},${o})`;
         ctx.lineWidth = 1;
         ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(mouse.x, mouse.y); ctx.stroke();
         a.x -= mdx * 0.0008; a.y -= mdy * 0.0008;
       }
-      const tw = 0.55 + Math.sin(a.ph) * 0.35;
+      const tw = (0.55 + Math.sin(a.ph) * 0.35) * c.linkMul;
       ctx.beginPath(); ctx.arc(a.x, a.y, a.r, 0, Math.PI * 2);
-      ctx.fillStyle = `rgba(210,216,255,${tw})`; ctx.fill();
+      ctx.fillStyle = `rgba(${c.node},${Math.min(tw, 1)})`; ctx.fill();
     }
 
     // shooting stars

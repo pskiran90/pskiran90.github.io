@@ -21,14 +21,16 @@ body.cursor-ready .cursor-dot, body.cursor-ready .cursor-ring { opacity: 1; }
 
 /* ===== Background layers ===== */
 .fx-canvas { position: fixed; inset: 0; z-index: -2; width: 100%; height: 100%; pointer-events: none; opacity: .95; transition: opacity .5s ease; }
-[data-theme="light"] .fx-canvas { opacity: .4; }
+[data-theme="light"] .fx-canvas { opacity: .7; }
 
 .aurora { position: fixed; inset: 0; z-index: -3; overflow: hidden; pointer-events: none; }
 .aurora__blob { position: absolute; border-radius: 50%; filter: blur(110px); opacity: .5; will-change: transform; }
 .aurora__blob--1 { width: 48vw; height: 48vw; top: -12%; left: -8%;  background: radial-gradient(circle, var(--violet), transparent 70%); animation: drift1 24s ease-in-out infinite; }
 .aurora__blob--2 { width: 44vw; height: 44vw; top: 28%;  right: -14%; background: radial-gradient(circle, var(--cyan),   transparent 70%); animation: drift2 28s ease-in-out infinite; }
 .aurora__blob--3 { width: 40vw; height: 40vw; bottom: -14%; left: 22%; background: radial-gradient(circle, var(--pink),   transparent 70%); animation: drift3 32s ease-in-out infinite; }
-[data-theme="light"] .aurora__blob { opacity: .28; }
+[data-theme="light"] .aurora { filter: saturate(1.15); }
+[data-theme="light"] .aurora__blob { opacity: .22; filter: blur(120px); }
+[data-theme="light"] .grain { opacity: .025; }
 
 .grain { position: fixed; inset: 0; z-index: -1; pointer-events: none; opacity: .04; mix-blend-mode: overlay;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); }
@@ -195,6 +197,14 @@ body.ready .hero__name .char { animation: charIn .7s var(--ease-out) forwards; a
 .skill-group::before, .project::before { content: ''; position: absolute; top: -1px; left: 0; right: 0; height: 2px; background: var(--grad-tri); opacity: 0; transition: opacity .35s; }
 .skill-group:hover::before, .project:hover::before { opacity: 1; }
 .tilt { transition: transform .2s var(--ease), border-color .25s, box-shadow .25s; will-change: transform; }
+
+/* Light mode: cards/nav need a resting shadow + crisper frost to lift off the page */
+[data-theme="light"] .stat,
+[data-theme="light"] .skill-group,
+[data-theme="light"] .project,
+[data-theme="light"] .contact-card { box-shadow: 0 14px 34px -24px rgba(24, 32, 78, .45); }
+[data-theme="light"] .nav { background: color-mix(in srgb, var(--bg) 78%, transparent); }
+[data-theme="light"] .glare { mix-blend-mode: soft-light; background: radial-gradient(circle at var(--gx,50%) var(--gy,50%), rgba(120,110,220,.4), transparent 45%); }
 
 /* Holographic glare element injected by JS into tilt cards */
 .glare { position: absolute; inset: 0; border-radius: inherit; pointer-events: none; opacity: 0; transition: opacity .3s; mix-blend-mode: overlay;

@@ -49,15 +49,23 @@
 }
 
 [data-theme="light"] {
-  --bg: #f5f7fc;
-  --bg-alt: #e9eef7;
-  --surface: rgba(255, 255, 255, 0.6);
+  /* Deeper, higher-contrast brand spectrum so gradients/accents read on white.
+     --accent*, --grad* are defined via these vars in :root, so they re-resolve. */
+  --violet: #6d28d9;
+  --cyan:   #0e7490;
+  --pink:   #db2777;
+  --lime:   #4d7c0f;
+
+  --bg: #eceffa;
+  --bg-alt: #e0e6f4;
+  --surface: rgba(255, 255, 255, 0.78);
   --surface-solid: #ffffff;
-  --surface-2: #eef2f9;
-  --border: rgba(15, 27, 45, 0.1);
-  --border-strong: rgba(15, 27, 45, 0.2);
-  --text: #0c1424;
-  --text-dim: #45506a;
-  --text-faint: #8088a0;
-  --shadow: 0 24px 60px -30px rgba(20, 30, 70, 0.35);
+  --surface-2: #eef2fb;
+  --border: rgba(24, 28, 64, 0.1);
+  --border-strong: rgba(24, 28, 64, 0.2);
+  --text: #0b1222;
+  --text-dim: #3c4660;
+  --text-faint: #6f778f;
+  --shadow: 0 22px 50px -26px rgba(24, 32, 78, 0.4);
+  --shadow-glow: 0 0 50px -14px var(--accent);
 }
