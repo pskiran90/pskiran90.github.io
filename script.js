@@ -130,12 +130,15 @@ function renderExperience() {
 function renderProjects() {
   const grid = document.getElementById('projectsGrid');
   PROJECTS.forEach((p, i) => {
+    // Outer wrapper floats; inner card handles reveal + tilt so transforms don't collide.
     const card = el(`
-      <div class="project tilt reveal" style="transition-delay:${i * 50}ms">
-        <span class="project__icon">${icon(p.icon, 22)}</span>
-        <div class="project__name">${p.name}</div>
-        <div class="project__desc">${p.desc}</div>
-        <div class="project__tech">${p.tech.map(t => `<span>${t}</span>`).join('')}</div>
+      <div class="project-float" style="--fd:${(i % 4) * 0.55}s">
+        <div class="project tilt reveal" style="transition-delay:${i * 50}ms">
+          <span class="project__icon">${icon(p.icon, 22)}</span>
+          <div class="project__name">${p.name}</div>
+          <div class="project__desc">${p.desc}</div>
+          <div class="project__tech">${p.tech.map(t => `<span>${t}</span>`).join('')}</div>
+        </div>
       </div>`);
     grid.appendChild(card);
   });
@@ -341,6 +344,107 @@ function initParallax() {
   });
 }
 
+/* Starfield with twinkling stars + periodic shooting stars */
+function initStarfield() {
+  const canvas = document.getElementById('starfield');
+  if (!canvas) return;
+  if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  const ctx = canvas.getContext('2d');
+  let w = 0, h = 0, dpr = Math.min(window.devicePixelRatio || 1, 2);
+  let stars = [];
+  let shooters = [];
+  let nextShooter = 0;
+
+  // Brand palette for the streaks
+  const SHOOT_COLORS = ['139,92,246', '34,211,238', '244,114,182'];
+
+  function resize() {
+    w = canvas.clientWidth; h = canvas.clientHeight;
+    canvas.width = w * dpr; canvas.height = h * dpr;
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    const count = Math.round((w * h) / 9000); // density scales with viewport
+    stars = Array.from({ length: count }, (_, i) => ({
+      x: Math.random() * w,
+      y: Math.random() * h,
+      r: Math.random() * 1.3 + 0.3,
+      base: Math.random() * 0.5 + 0.25,
+      tw: Math.random() * 0.02 + 0.004,        // twinkle speed
+      ph: Math.random() * Math.PI * 2,          // phase
+      drift: Math.random() * 0.04 + 0.01,       // slow downward drift
+    }));
+  }
+
+  function spawnShooter() {
+    const fromLeft = Math.random() > 0.4;
+    const startX = fromLeft ? Math.random() * w * 0.4 : Math.random() * w;
+    const startY = Math.random() * h * 0.5;
+    const angle = (Math.PI / 4) + (Math.random() * 0.3 - 0.15); // ~45° down-right
+    const speed = Math.random() * 6 + 9;
+    shooters.push({
+      x: startX, y: startY,
+      vx: Math.cos(angle) * speed,
+      vy: Math.sin(angle) * speed,
+      len: Math.random() * 120 + 90,
+      life: 0,
+      ttl: Math.random() * 40 + 50,
+      color: SHOOT_COLORS[Math.floor(Math.random() * SHOOT_COLORS.length)],
+    });
+  }
+
+  let frame = 0;
+  function draw() {
+    frame++;
+    ctx.clearRect(0, 0, w, h);
+
+    // Twinkling stars
+    for (const s of stars) {
+      s.ph += s.tw;
+      s.y += s.drift;
+      if (s.y > h + 2) { s.y = -2; s.x = Math.random() * w; }
+      const a = s.base + Math.sin(s.ph) * 0.35;
+      ctx.beginPath();
+      ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(220,225,255,${Math.max(0, a)})`;
+      ctx.fill();
+    }
+
+    // Shooting stars
+    if (frame >= nextShooter) {
+      spawnShooter();
+      nextShooter = frame + Math.round(Math.random() * 160 + 90); // every ~1.5–4s
+    }
+    for (let i = shooters.length - 1; i >= 0; i--) {
+      const m = shooters[i];
+      m.x += m.vx; m.y += m.vy; m.life++;
+      const fade = 1 - m.life / m.ttl;
+      const tailX = m.x - m.vx * (m.len / 12);
+      const tailY = m.y - m.vy * (m.len / 12);
+      const grad = ctx.createLinearGradient(m.x, m.y, tailX, tailY);
+      grad.addColorStop(0, `rgba(${m.color},${0.9 * fade})`);
+      grad.addColorStop(1, `rgba(${m.color},0)`);
+      ctx.strokeStyle = grad;
+      ctx.lineWidth = 2;
+      ctx.lineCap = 'round';
+      ctx.beginPath();
+      ctx.moveTo(m.x, m.y);
+      ctx.lineTo(tailX, tailY);
+      ctx.stroke();
+      // bright head
+      ctx.beginPath();
+      ctx.arc(m.x, m.y, 1.8, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(255,255,255,${fade})`;
+      ctx.fill();
+      if (m.life > m.ttl || m.x > w + 200 || m.y > h + 200) shooters.splice(i, 1);
+    }
+
+    requestAnimationFrame(draw);
+  }
+
+  resize();
+  addEventListener('resize', resize);
+  draw();
+}
+
 /* ============ Boot ============ */
 document.addEventListener('DOMContentLoaded', () => {
   renderSkills();
@@ -348,6 +452,7 @@ document.addEventListener('DOMContentLoaded', () => {
   renderProjects();
   renderMarquee();
   fillInlineIcons();
+  initStarfield();
   initPreloader();
   initCursor();
   initMagnetic();

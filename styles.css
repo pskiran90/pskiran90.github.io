@@ -76,8 +76,12 @@ body.cursor-ready .cursor-dot, body.cursor-ready .cursor-ring { opacity: 1; }
 .preloader__bar span { display: block; height: 100%; width: 0; background: var(--accent-grad); border-radius: 3px; }
 .preloader__pct { font-family: 'JetBrains Mono', monospace; font-size: .8rem; color: var(--text-faint); }
 
+/* ===== Starfield + shooting stars (canvas) ===== */
+.starfield { position: fixed; inset: 0; z-index: -2; width: 100%; height: 100%; pointer-events: none; opacity: .9; transition: opacity .5s ease; }
+[data-theme="light"] .starfield { opacity: .35; }
+
 /* ===== Animated aurora background ===== */
-.aurora { position: fixed; inset: 0; z-index: -2; overflow: hidden; pointer-events: none; }
+.aurora { position: fixed; inset: 0; z-index: -3; overflow: hidden; pointer-events: none; }
 .aurora__blob { position: absolute; border-radius: 50%; filter: blur(100px); opacity: .55; will-change: transform; }
 .aurora__blob--1 { width: 48vw; height: 48vw; top: -12%; left: -8%; background: radial-gradient(circle, var(--accent), transparent 70%); animation: drift1 24s ease-in-out infinite; }
 .aurora__blob--2 { width: 44vw; height: 44vw; top: 28%; right: -14%; background: radial-gradient(circle, var(--accent-2), transparent 70%); animation: drift2 28s ease-in-out infinite; }
@@ -214,8 +218,12 @@ body.cursor-ready .cursor-dot, body.cursor-ready .cursor-ring { opacity: 1; }
 
 /* ===== Projects ===== */
 .projects { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
-.project { background: var(--surface); backdrop-filter: blur(10px); border: 1px solid var(--border); border-radius: var(--radius); padding: 28px; transition: border-color .25s, box-shadow .25s; display: flex; flex-direction: column; }
-.project:hover { border-color: var(--border-strong); box-shadow: var(--shadow); }
+/* Floating wrapper — gently bobs the app card without fighting reveal/tilt transforms on the inner card */
+.project-float { animation: appFloat 7s ease-in-out infinite; animation-delay: var(--fd, 0s); will-change: transform; }
+.project-float:hover { animation-play-state: paused; }
+@keyframes appFloat { 0%, 100% { transform: translateY(0) rotate(0deg); } 50% { transform: translateY(-14px) rotate(-.4deg); } }
+.project { height: 100%; background: var(--surface); backdrop-filter: blur(10px); border: 1px solid var(--border); border-radius: var(--radius); padding: 28px; transition: border-color .25s, box-shadow .25s; display: flex; flex-direction: column; }
+.project:hover { border-color: var(--border-strong); box-shadow: 0 30px 70px -28px rgba(0,0,0,.85), var(--glow); }
 .project__icon { display: grid; place-items: center; width: 48px; height: 48px; border-radius: 13px; background: var(--accent-grad); color: #fff; margin-bottom: 16px; box-shadow: 0 8px 24px -8px var(--accent); }
 .project__name { font-family: 'Space Grotesk', sans-serif; font-size: 1.2rem; font-weight: 600; margin-bottom: 8px; }
 .project__desc { color: var(--text-dim); font-size: .92rem; flex: 1; margin-bottom: 16px; }
