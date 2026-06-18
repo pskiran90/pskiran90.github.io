@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kiran P S — Senior Flutter Developer</title>
+  <meta name="description" content="Kiran P S — Senior Flutter Developer with 4+ years building production mobile apps across FinTech, AI/EdTech, ERP & real-time trading. Flutter, Android & iOS native, Node.js & PHP backend." />
+  <meta name="author" content="Kiran P S" />
+
+  <meta property="og:title" content="Kiran P S — Senior Flutter Developer" />
+  <meta property="og:description" content="4+ years architecting production-grade mobile apps. Flutter, native Android/iOS, Node.js & PHP." />
+  <meta property="og:type" content="website" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>👨‍💻</text></svg>" />
+</head>
+<body>
+  <!-- Preloader -->
+  <div class="preloader" id="preloader">
+    <div class="preloader__inner">
+      <span class="preloader__logo">Kiran</span>
+      <div class="preloader__bar"><span id="preloaderFill"></span></div>
+      <span class="preloader__pct" id="preloaderPct">0%</span>
+    </div>
+  </div>
+
+  <!-- Custom cursor -->
+  <div class="cursor-dot" id="cursorDot" aria-hidden="true"></div>
+  <div class="cursor-ring" id="cursorRing" aria-hidden="true"></div>
+
+  <!-- Animated background -->
+  <div class="aurora" aria-hidden="true">
+    <div class="aurora__blob aurora__blob--1"></div>
+    <div class="aurora__blob aurora__blob--2"></div>
+    <div class="aurora__blob aurora__blob--3"></div>
+  </div>
+  <div class="grain" aria-hidden="true"></div>
+
+  <!-- Progress bar -->
+  <div class="scroll-progress" id="scrollProgress"></div>
+
+  <!-- Navigation -->
+  <header class="nav" id="nav">
+    <div class="nav__inner container">
+      <a href="#hero" class="nav__brand magnetic">Kiran<span>.</span></a>
+      <nav class="nav__links" id="navLinks">
+        <a href="#about">About</a>
+        <a href="#skills">Skills</a>
+        <a href="#experience">Experience</a>
+        <a href="#projects">Projects</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <div class="nav__actions">
+        <button class="theme-toggle magnetic" id="themeToggle" aria-label="Toggle theme">
+          <svg class="icon-sun" viewBox="0 0 24 24" width="20" height="20"><path fill="currentColor" d="M12 7a5 5 0 100 10 5 5 0 000-10zM12 1v2m0 18v2M4.2 4.2l1.4 1.4m12.8 12.8l1.4 1.4M1 12h2m18 0h2M4.2 19.8l1.4-1.4M18.4 5.6l1.4-1.4" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/></svg>
+          <svg class="icon-moon" viewBox="0 0 24 24" width="20" height="20"><path fill="currentColor" d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+        </button>
+        <button class="nav__burger" id="navBurger" aria-label="Menu"><span></span><span></span><span></span></button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero" id="hero">
+    <div class="container hero__inner">
+      <div class="hero__text">
+        <p class="hero__eyebrow rise" style="--d:.1s"><span class="wave">👋</span> Hi, I'm</p>
+        <h1 class="hero__name rise" style="--d:.2s">Kiran P S</h1>
+        <h2 class="hero__role rise" style="--d:.3s"><span class="grad">Senior Flutter Developer</span></h2>
+        <p class="hero__tagline rise" style="--d:.4s">
+          Building production-grade mobile apps across <strong>FinTech</strong>, <strong>AI/EdTech</strong>,
+          <strong>ERP</strong> &amp; <strong>real-time trading</strong> — with native Android/iOS depth and
+          full-stack Node.js &amp; PHP backends.
+        </p>
+        <div class="hero__meta rise" style="--d:.5s">
+          <span class="hero__meta-item" data-icon="pin">Kochi, Kerala, India</span>
+          <span class="hero__meta-item" data-icon="briefcase">4+ years experience</span>
+        </div>
+        <div class="hero__cta rise" style="--d:.6s">
+          <a href="#projects" class="btn btn--primary magnetic">View My Work <span data-icon="arrow"></span></a>
+          <a href="#contact" class="btn btn--ghost magnetic">Get in Touch</a>
+        </div>
+        <div class="hero__socials rise" style="--d:.7s">
+          <a href="mailto:pskiran91@gmail.com" aria-label="Email"><span data-icon="mail"></span> pskiran91@gmail.com</a>
+          <a href="tel:+919645824038" aria-label="Phone"><span data-icon="phone"></span> +91 96458 24038</a>
+          <a href="https://github.com/kiranTakyon" target="_blank" rel="noopener" aria-label="GitHub"><span data-icon="github"></span> kiranTakyon</a>
+        </div>
+      </div>
+      <div class="hero__photo rise" style="--d:.45s" id="heroPhoto">
+        <div class="hero__photo-ring">
+          <img src="assets/image_kiran.png" alt="Kiran P S" id="heroImg"
+               onerror="this.style.display='none';document.getElementById('heroInitials').style.display='grid';" />
+          <div class="hero__initials" id="heroInitials">Kiran</div>
+        </div>
+        <span class="float-chip float-chip--1">Flutter</span>
+        <span class="float-chip float-chip--2">Dart</span>
+        <span class="float-chip float-chip--3">Node.js</span>
+        <span class="float-chip float-chip--4">iOS · Android</span>
+        <div class="hero__badge"><span class="hero__badge-dot"></span> Open to work</div>
+      </div>
+    </div>
+    <a href="#about" class="hero__scroll" aria-label="Scroll down"><span></span></a>
+  </section>
+
+  <!-- Tech marquee -->
+  <div class="marquee" aria-hidden="true">
+    <div class="marquee__track" id="marqueeTrack"></div>
+  </div>
+
+  <main>
+    <!-- About -->
+    <section class="section" id="about">
+      <div class="container">
+        <div class="section__head reveal">
+          <span class="section__num">01</span>
+          <h2 class="section__title">About Me</h2>
+        </div>
+        <div class="about reveal">
+          <p>
+            Senior Flutter Developer with <strong>4+ years</strong> of experience architecting and delivering
+            production-grade mobile applications. Expert in <strong>Flutter (Dart)</strong> with a strong native
+            background in <strong>Android (Java/Kotlin)</strong> and <strong>iOS (Swift)</strong>, including platform
+            channels for deep native integration.
+          </p>
+          <p>
+            I work to <strong>Clean Architecture</strong>, <strong>MVVM</strong>, and <strong>SOLID</strong> principles,
+            with structured state management using BLoC, Riverpod, GetX &amp; Provider. Hands-on with offline storage,
+            CI/CD pipelines for Play Store &amp; App Store releases, unit/widget/integration testing, and full-stack
+            backend development in Node.js and PHP.
+          </p>
+          <div class="about__stats">
+            <div class="stat tilt"><span class="stat__num" data-count="4" data-suffix="+">0</span><span class="stat__label">Years experience</span></div>
+            <div class="stat tilt"><span class="stat__num" data-count="70" data-suffix="%">0</span><span class="stat__label">Grading efficiency gain on STOGO.ai</span></div>
+            <div class="stat tilt"><span class="stat__num" data-count="60" data-suffix="fps">0</span><span class="stat__label">Native-like rendering</span></div>
+            <div class="stat tilt"><span class="stat__num" data-count="10" data-suffix="+">0</span><span class="stat__label">Shipped products</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Skills -->
+    <section class="section section--alt" id="skills">
+      <div class="container">
+        <div class="section__head reveal">
+          <span class="section__num">02</span>
+          <h2 class="section__title">Skills &amp; Tooling</h2>
+        </div>
+        <div class="skills" id="skillsGrid"></div>
+      </div>
+    </section>
+
+    <!-- Experience -->
+    <section class="section" id="experience">
+      <div class="container">
+        <div class="section__head reveal">
+          <span class="section__num">03</span>
+          <h2 class="section__title">Experience</h2>
+        </div>
+        <div class="timeline" id="timeline"></div>
+      </div>
+    </section>
+
+    <!-- Projects -->
+    <section class="section section--alt" id="projects">
+      <div class="container">
+        <div class="section__head reveal">
+          <span class="section__num">04</span>
+          <h2 class="section__title">Key Projects</h2>
+        </div>
+        <div class="projects" id="projectsGrid"></div>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section class="section contact" id="contact">
+      <div class="container reveal">
+        <div class="section__head section__head--center">
+          <span class="section__num">05</span>
+          <h2 class="section__title">Let's Work Together</h2>
+        </div>
+        <p class="contact__lead">
+          Open to senior Flutter roles, freelance, and interesting product collaborations.
+          The fastest way to reach me is email.
+        </p>
+        <div class="contact__cards">
+          <a class="contact-card tilt" href="mailto:pskiran91@gmail.com">
+            <span class="contact-card__icon" data-icon="mail"></span>
+            <span class="contact-card__label">Email</span>
+            <span class="contact-card__value">pskiran91@gmail.com</span>
+          </a>
+          <a class="contact-card tilt" href="tel:+919645824038">
+            <span class="contact-card__icon" data-icon="phone"></span>
+            <span class="contact-card__label">Phone</span>
+            <span class="contact-card__value">+91 96458 24038</span>
+          </a>
+          <a class="contact-card tilt" href="https://github.com/kiranTakyon" target="_blank" rel="noopener">
+            <span class="contact-card__icon" data-icon="github"></span>
+            <span class="contact-card__label">GitHub</span>
+            <span class="contact-card__value">github.com/kiranTakyon</span>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer__inner">
+      <span>© <span id="year"></span> Kiran P S · Senior Flutter Developer</span>
+      <span class="footer__loc">Crafted in Kochi, Kerala 🇮🇳</span>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
