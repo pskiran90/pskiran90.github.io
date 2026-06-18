@@ -56,12 +56,20 @@ export function initConstellation() {
     ctx.clearRect(0, 0, w, h);
     const c = pal();
 
-    // links between nearby nodes (+ to cursor)
+    // Generative flow field: each node steers along a smoothly evolving vector
+    // field (layered sines ≈ curl noise) so the swarm drifts organically.
+    const t = frame * 0.0016;
     for (let i = 0; i < nodes.length; i++) {
       const a = nodes[i];
+      const angle = (Math.sin(a.x * 0.0021 + t) + Math.cos(a.y * 0.0019 - t * 0.8)
+                   + Math.sin((a.x + a.y) * 0.0013 + t * 1.4)) * 1.4;
+      a.vx += Math.cos(angle) * 0.035;
+      a.vy += Math.sin(angle) * 0.035;
+      a.vx *= 0.95; a.vy *= 0.95;                 // gentle damping → no runaway speed
       a.x += a.vx; a.y += a.vy; a.ph += a.tw;
-      if (a.x < 0 || a.x > w) a.vx *= -1;
-      if (a.y < 0 || a.y > h) a.vy *= -1;
+      // wrap around edges for a seamless, boundless field
+      if (a.x < -10) a.x = w + 10; else if (a.x > w + 10) a.x = -10;
+      if (a.y < -10) a.y = h + 10; else if (a.y > h + 10) a.y = -10;
 
       for (let j = i + 1; j < nodes.length; j++) {
         const b = nodes[j];

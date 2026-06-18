@@ -11,6 +11,7 @@ import {
   initConstellation, initRoleRotator, initScrambleOnReveal,
   initCursor, initMagnetic, initTilt, initSpotlight, initParallax, initTimelineDraw,
 } from './effects.js';
+import { initDraggable } from './drag.js';
 
 function boot() {
   // 1 — views
@@ -31,6 +32,7 @@ function boot() {
   initTilt();
   initSpotlight();
   initParallax();
+  initDraggable();
 
   // 4 — scroll & reveal behaviour
   initReveal();

@@ -198,6 +198,19 @@ body.ready .hero__name .char { animation: charIn .7s var(--ease-out) forwards; a
 .skill-group:hover::before, .project:hover::before { opacity: 1; }
 .tilt { transition: transform .2s var(--ease), border-color .25s, box-shadow .25s; will-change: transform; }
 
+/* ===== Draggable physics (translate/rotate set by JS, composes with transform) ===== */
+.draggable { cursor: grab; touch-action: none; -webkit-user-select: none; user-select: none; }
+.draggable:active { cursor: grabbing; }
+.draggable.dragging { cursor: grabbing; z-index: 60; position: relative; scale: 1.05; box-shadow: 0 50px 90px -24px rgba(0, 0, 0, .7); }
+.draggable.dragging img { pointer-events: none; }
+.hero__photo-ring.draggable { z-index: 5; }
+@media (prefers-reduced-motion: reduce) { .draggable { cursor: default; } }
+
+/* Subtle "drag me" hint chip used in section heads */
+.drag-hint { margin-left: auto; display: inline-flex; align-items: center; gap: 6px; font-family: var(--font-mono); font-size: .72rem; color: var(--text-faint); border: 1px dashed var(--border-strong); padding: 5px 12px; border-radius: 999px; white-space: nowrap; animation: floaty 4s ease-in-out infinite; }
+.drag-hint [data-icon] { display: inline-flex; color: var(--accent-2); }
+@media (max-width: 600px) { .drag-hint { display: none; } }
+
 /* Light mode: cards/nav need a resting shadow + crisper frost to lift off the page */
 [data-theme="light"] .stat,
 [data-theme="light"] .skill-group,
