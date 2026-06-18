@@ -270,6 +270,38 @@ body.ready .rise { animation: riseIn .9s cubic-bezier(.2,.7,.2,1) forwards; anim
   .nav__burger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
   .nav__burger.open span:nth-child(2) { opacity: 0; }
   .nav__burger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+  .nav__links { backdrop-filter: blur(14px); }
+  .section { padding: 80px 0; }
+  .section__head { margin-bottom: 38px; }
+}
+
+/* Phones */
+@media (max-width: 600px) {
+  .container { padding: 0 18px; }
+  .hero { min-height: auto; padding: 104px 0 64px; }
+  .hero__inner { padding-top: 0; gap: 28px; }
+  .hero__scroll { display: none; }
+  .hero__name { font-size: clamp(2.4rem, 12vw, 3.2rem); letter-spacing: -1px; }
+  .hero__photo-ring { width: clamp(180px, 52vw, 240px); }
+  .float-chip { display: none; }
+  .hero__socials { gap: 14px 22px; }
+  .marquee { padding: 16px 0; }
+  .marquee__item { font-size: 1rem; padding: 0 20px; }
+  .marquee__item::after { margin-left: 20px; }
+  .section { padding: 68px 0; }
+  .about__stats { gap: 12px; }
+  .stat { padding: 20px; }
+  .stat__num { font-size: 1.9rem; }
+  .skill-group, .project, .contact-card { padding: 22px; }
+  .footer__inner { flex-direction: column; align-items: flex-start; gap: 4px; }
+}
+
+/* Small phones */
+@media (max-width: 380px) {
+  .hero__name { font-size: 2.1rem; }
+  .about__stats { grid-template-columns: 1fr; }
+  .hero__socials { font-size: .82rem; }
+  .nav__inner { height: 58px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
