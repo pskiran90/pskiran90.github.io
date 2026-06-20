@@ -50,6 +50,32 @@ export function renderExperience() {
   });
 }
 
+/* type → { icon, label } for project store / web links */
+const LINK_META = {
+  appstore:  { icon: 'apple',      label: 'App Store' },
+  playstore: { icon: 'googlePlay', label: 'Play Store' },
+  web:       { icon: 'globe',      label: 'Live' },
+};
+
+function projectLinks(links) {
+  if (!links || !links.length) return '';
+  const items = links
+    .filter(l => l && l.url && LINK_META[l.type])
+    .map(l => {
+      const m = LINK_META[l.type];
+      // stopPropagation so a click on the link never starts/holds a card drag.
+      return `<a class="project-link" href="${l.url}" target="_blank" rel="noopener"
+                 aria-label="${p_safe(l.label) || m.label}"
+                 onpointerdown="event.stopPropagation()">
+                ${icon(m.icon, 14)}<span>${p_safe(l.label) || m.label}</span>
+              </a>`;
+    })
+    .join('');
+  return items ? `<div class="project__links">${items}</div>` : '';
+}
+
+const p_safe = s => (s == null ? '' : String(s).replace(/[<>"]/g, ''));
+
 export function renderProjects() {
   const grid = document.getElementById('projectsGrid');
   PROJECTS.forEach((p, i) => {
@@ -61,6 +87,7 @@ export function renderProjects() {
           <div class="project__name">${p.name}</div>
           <div class="project__desc">${p.desc}</div>
           <div class="project__tech">${p.tech.map(t => `<span>${t}</span>`).join('')}</div>
+          ${projectLinks(p.links)}
         </div>
       </div>`));
   });

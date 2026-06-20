@@ -51,15 +51,27 @@ export const EXPERIENCE = [
   },
 ];
 
+/* Each project may carry `links`: an array of { type, url }.
+   type ∈ 'appstore' | 'playstore' | 'web'. Leave the array empty (or omit
+   a type) when no public link exists — the card simply hides that button.
+   Fill the `url` strings below with the real store / website addresses. */
 export const PROJECTS = [
-  { icon: 'brain', name: 'STOGO.ai', desc: 'AI-powered automated exam generation & evaluation platform; built the Flutter app and PHP backend.', tech: ['Flutter', 'GetX', 'Hive', 'Core PHP', 'MySQL', 'AWS', 'Firebase'] },
-  { icon: 'trendingUp', name: 'APM Trader', desc: 'Forex trading mobile app with real-time market feeds and live order execution.', tech: ['Flutter', 'BLoC', 'Node.js', 'WebSockets', 'Hive'] },
-  { icon: 'barChart', name: 'Vide Trader', desc: 'Trading platform with live price streaming, charting and portfolio analytics.', tech: ['Flutter', 'BLoC', 'Node.js', 'WebSockets', 'SQLite'] },
-  { icon: 'monitor', name: 'Trader Admin Panels', desc: 'Web admin dashboards for trade monitoring, user management and reporting.', tech: ['Flutter Web', 'BLoC', 'Node.js', 'Firebase'] },
-  { icon: 'briefcase', name: 'Spancom ERP', desc: 'Enterprise ERP system covering finance and inventory management workflows.', tech: ['Flutter', 'BLoC', 'Firebase'] },
-  { icon: 'message', name: 'Vide Chat', desc: 'Real-time messaging platform with one-to-one and group chat.', tech: ['Flutter', 'Firebase', 'Socket.io'] },
-  { icon: 'share', name: 'Trrings', desc: 'Social media platform with feeds, messaging and media uploads.', tech: ['Flutter', 'GetX', 'Spring Boot', 'AWS'] },
-  { icon: 'book', name: 'School Mgmt Apps', desc: 'Orison / Habitat / LPS — parent-teacher comms, attendance & notifications. Native Android & iOS.', tech: ['Android Native', 'iOS Native', 'AWS'] },
+  { icon: 'brain', name: 'STOGO.ai', desc: 'AI-powered automated exam generation & evaluation platform; built the Flutter app and PHP backend.', tech: ['Flutter', 'GetX', 'Hive', 'Core PHP', 'MySQL', 'AWS', 'Firebase'], links: [
+    { type: 'web', url: 'https://stogo.ai' },
+  ] },
+  { icon: 'trendingUp', name: 'APM Trader', desc: 'Forex trading mobile app with real-time market feeds and live order execution.', tech: ['Flutter', 'BLoC', 'Node.js', 'WebSockets', 'Hive'], links: [
+    { type: 'playstore', url: 'https://play.google.com/store/apps/details?id=com.videalpha.apmforextrader' },
+    { type: 'appstore', url: 'https://apps.apple.com/app/id1665063119' },
+  ] },
+  { icon: 'barChart', name: 'Vide Trader', desc: 'Trading platform with live price streaming, charting and portfolio analytics.', tech: ['Flutter', 'BLoC', 'Node.js', 'WebSockets', 'SQLite'], links: [] },
+  { icon: 'monitor', name: 'Trader Admin Panels', desc: 'Web admin dashboards for trade monitoring, user management and reporting.', tech: ['Flutter Web', 'BLoC', 'Node.js', 'Firebase'], links: [] },
+  { icon: 'briefcase', name: 'Spancom ERP', desc: 'Enterprise ERP system covering finance and inventory management workflows.', tech: ['Flutter', 'BLoC', 'Firebase'], links: [] },
+  { icon: 'message', name: 'Vide Chat', desc: 'Real-time messaging platform with one-to-one and group chat.', tech: ['Flutter', 'Firebase', 'Socket.io'], links: [] },
+  { icon: 'share', name: 'Trrings', desc: 'Social media platform with feeds, messaging and media uploads.', tech: ['Flutter', 'GetX', 'Spring Boot', 'AWS'], links: [
+    { type: 'playstore', url: 'https://play.google.com/store/apps/details?id=com.app.trrings' },
+    { type: 'appstore', url: 'https://apps.apple.com/app/id6742101638' },
+  ] },
+  { icon: 'book', name: 'School Mgmt Apps', desc: 'Orison / Habitat / LPS — parent-teacher comms, attendance & notifications. Native Android & iOS.', tech: ['Android Native', 'iOS Native', 'AWS'], links: [] },
 ];
 
 export const MARQUEE = ['Flutter', 'Dart', 'BLoC', 'Riverpod', 'GetX', 'Android', 'iOS', 'Swift', 'Kotlin', 'Node.js', 'PHP', 'WebSockets', 'Firebase', 'AWS', 'MySQL', 'MongoDB', 'Hive', 'SQLite', 'CI/CD', 'Clean Architecture'];
